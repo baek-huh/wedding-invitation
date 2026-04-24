@@ -9,6 +9,7 @@
 
 # Claude
 .claude/settings.local.json
+.claude/launch.json
 
 # Temp
 *.tmp

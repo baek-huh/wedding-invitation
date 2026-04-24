@@ -469,119 +469,118 @@
   .direction-card .desc + .desc { margin-top: 4px; }
 
   /* ---- Accounts ---- */
-  .accounts { max-width: 360px; margin: 0 auto; }
+  .accounts-intro {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.75;
+    margin-bottom: 22px;
+  }
+  .accounts {
+    max-width: 380px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .acc-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
   .acc-toggle {
     width: 100%;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 18px;
+    background: transparent;
+    border: 0;
+    padding: 18px 20px;
     font-family: 'Nanum Myeongjo', serif;
-    font-size: 14px;
-    letter-spacing: 0.08em;
+    font-size: 15px;
+    letter-spacing: 0.06em;
     color: var(--ink);
     cursor: pointer;
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 10px;
   }
-  .acc-toggle .arrow { color: var(--muted); transition: transform 0.25s; }
+  .acc-toggle .arrow {
+    color: var(--muted);
+    font-size: 14px;
+    transition: transform 0.25s;
+  }
   .acc-toggle.open .arrow { transform: rotate(180deg); }
   .acc-body {
-    max-height: 0; overflow: hidden;
+    max-height: 0;
+    overflow: hidden;
     transition: max-height 0.3s ease;
-    margin-bottom: 10px;
   }
-  .acc-body.open { max-height: 500px; }
+  .acc-body.open { max-height: 600px; }
+  .acc-body-inner {
+    padding: 4px 20px 10px;
+    border-top: 1px solid var(--line);
+  }
   .acc-row {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin-bottom: 8px;
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px;
+    gap: 12px;
+    padding: 14px 0;
   }
-  .acc-row .info { text-align: left; }
-  .acc-row .role { color: var(--muted); font-size: 11px; letter-spacing: 0.2em; margin-bottom: 2px; }
-  .acc-row .name-row { font-family: 'Nanum Myeongjo', serif; }
-  .acc-row .bank { color: #4a4036; font-size: 12.5px; margin-top: 2px; }
+  .acc-row + .acc-row { border-top: 1px solid var(--line); }
+  .acc-row .info { text-align: left; min-width: 0; flex: 1; }
+  .acc-row .name-row {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    margin-bottom: 3px;
+  }
+  .acc-row .bank {
+    color: var(--muted);
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+  }
   .copy-btn {
-    background: var(--accent); color: #fff;
-    border: 0; padding: 6px 12px; border-radius: 6px;
-    font-size: 11px; letter-spacing: 0.1em; cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
+  .copy-btn svg { flex-shrink: 0; }
   .copy-btn:active { transform: scale(0.96); }
+  .copy-btn.copied {
+    background: var(--rose);
+    border-color: var(--rose);
+    color: #fff;
+  }
+  .copy-btn[data-copy=""] { opacity: 0.45; cursor: default; }
 
-  /* ---- RSVP ---- */
-  .rsvp-intro { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
-  .rsvp-btn {
-    display: inline-block;
-    padding: 12px 36px;
+  /* ---- Footer share ---- */
+  .footer-share {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding: 10px 24px;
     background: var(--accent);
     color: #fff;
-    text-decoration: none;
+    border: 0;
     border-radius: 40px;
     font-family: 'Nanum Myeongjo', serif;
-    letter-spacing: 0.2em;
-    border: 0;
+    font-size: 13px;
+    letter-spacing: 0.15em;
     cursor: pointer;
-    font-size: 14px;
     box-shadow: var(--shadow);
+    transition: background 0.2s ease;
   }
-  .rsvp-btn:active { transform: translateY(1px); }
-
-  .modal {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.5);
-    display: none; align-items: flex-end; justify-content: center;
-    z-index: 200;
-  }
-  .modal.open { display: flex; }
-  .modal .sheet {
-    background: var(--paper);
-    width: 100%; max-width: 440px;
-    border-radius: 20px 20px 0 0;
-    padding: 24px 24px 32px;
-    max-height: 90vh; overflow-y: auto;
-  }
-  .modal h3 {
-    font-family: 'Nanum Myeongjo', serif;
-    font-size: 18px; letter-spacing: 0.1em;
-    text-align: center; margin: 4px 0 20px;
-  }
-  .modal label {
-    display: block; font-size: 12px; color: var(--muted);
-    margin: 10px 0 4px; letter-spacing: 0.1em;
-  }
-  .modal input, .modal select, .modal textarea {
-    width: 100%; padding: 10px 12px;
-    border: 1px solid var(--line); border-radius: 8px;
-    background: var(--bg); font-family: inherit; font-size: 14px;
-    color: var(--ink);
-  }
-  .modal .row {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-  }
-  .modal .actions {
-    display: flex; gap: 8px; margin-top: 20px;
-  }
-  .modal .actions button {
-    flex: 1; padding: 12px; border-radius: 8px;
-    border: 0; font-family: inherit; font-size: 14px;
-    cursor: pointer; letter-spacing: 0.1em;
-  }
-  .modal .cancel { background: var(--bg); color: var(--ink); border: 1px solid var(--line); }
-  .modal .submit { background: var(--accent); color: #fff; }
-
-  /* ---- Share ---- */
-  .share-row {
-    display: flex; justify-content: center; gap: 14px; margin-top: 16px;
-  }
-  .share-row button {
-    width: 44px; height: 44px; border-radius: 50%;
-    border: 1px solid var(--line); background: var(--paper);
-    color: var(--accent); cursor: pointer; font-size: 16px;
-  }
+  .footer-share:active { transform: translateY(1px); }
+  .footer-share.copied { background: var(--rose); }
 
   /* ---- Footer ---- */
   footer {
@@ -774,83 +773,105 @@
   <section class="reveal">
     <div class="eyebrow">HEART</div>
     <h2 class="title">마음 전하실 곳</h2>
-    <p class="rsvp-intro serif">참석이 어려우신 분들을 위해<br/>축하의 마음을 전하실 수 있는 곳을 안내드립니다.</p>
+    <p class="accounts-intro serif">참석이 어려우신 분들을 위해<br/>축하의 마음을 전하실 수 있는 곳을 안내드립니다.</p>
     <div class="accounts">
-      <button class="acc-toggle" type="button" data-target="groom">
-        <span>신랑측 계좌번호</span><span class="arrow">▾</span>
-      </button>
-      <div class="acc-body" id="groom">
-        <div class="acc-row">
-          <div class="info">
-            <div class="role">GROOM</div>
-            <div class="name-row">허백</div>
-            <div class="bank">계좌번호 준비중</div>
+      <div class="acc-card">
+        <button class="acc-toggle" type="button" data-target="groom">
+          <span>신랑측 계좌번호</span><span class="arrow">▾</span>
+        </button>
+        <div class="acc-body" id="groom">
+          <div class="acc-body-inner">
+            <div class="acc-row">
+              <div class="info">
+                <div class="name-row">신랑 허백</div>
+                <div class="bank">카카오뱅크 · 3333-02-6595617</div>
+              </div>
+              <button class="copy-btn" data-copy="3333-02-6595617" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span class="copy-label">복사</span>
+              </button>
+            </div>
+            <div class="acc-row">
+              <div class="info">
+                <div class="name-row">아버지 허원순</div>
+                <div class="bank">계좌번호 준비중</div>
+              </div>
+              <button class="copy-btn" data-copy="" type="button" disabled>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span class="copy-label">복사</span>
+              </button>
+            </div>
+            <div class="acc-row">
+              <div class="info">
+                <div class="name-row">어머니 이순분</div>
+                <div class="bank">계좌번호 준비중</div>
+              </div>
+              <button class="copy-btn" data-copy="" type="button" disabled>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span class="copy-label">복사</span>
+              </button>
+            </div>
           </div>
-          <button class="copy-btn" data-copy="">복사</button>
-        </div>
-        <div class="acc-row">
-          <div class="info">
-            <div class="role">FATHER</div>
-            <div class="name-row">허원순 (부)</div>
-            <div class="bank">계좌번호 준비중</div>
-          </div>
-          <button class="copy-btn" data-copy="">복사</button>
-        </div>
-        <div class="acc-row">
-          <div class="info">
-            <div class="role">MOTHER</div>
-            <div class="name-row">이순분 (모)</div>
-            <div class="bank">계좌번호 준비중</div>
-          </div>
-          <button class="copy-btn" data-copy="">복사</button>
         </div>
       </div>
 
-      <button class="acc-toggle" type="button" data-target="bride">
-        <span>신부측 계좌번호</span><span class="arrow">▾</span>
-      </button>
-      <div class="acc-body" id="bride">
-        <div class="acc-row">
-          <div class="info">
-            <div class="role">BRIDE</div>
-            <div class="name-row">안지현</div>
-            <div class="bank">계좌번호 준비중</div>
+      <div class="acc-card">
+        <button class="acc-toggle" type="button" data-target="bride">
+          <span>신부측 계좌번호</span><span class="arrow">▾</span>
+        </button>
+        <div class="acc-body" id="bride">
+          <div class="acc-body-inner">
+            <div class="acc-row">
+              <div class="info">
+                <div class="name-row">신부 안지현</div>
+                <div class="bank">토스뱅크 · 1000-1234-5678</div>
+              </div>
+              <button class="copy-btn" data-copy="1000-1234-5678" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span class="copy-label">복사</span>
+              </button>
+            </div>
+            <div class="acc-row">
+              <div class="info">
+                <div class="name-row">아버지 안영석</div>
+                <div class="bank">계좌번호 준비중</div>
+              </div>
+              <button class="copy-btn" data-copy="" type="button" disabled>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span class="copy-label">복사</span>
+              </button>
+            </div>
+            <div class="acc-row">
+              <div class="info">
+                <div class="name-row">어머니 정경희</div>
+                <div class="bank">계좌번호 준비중</div>
+              </div>
+              <button class="copy-btn" data-copy="" type="button" disabled>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span class="copy-label">복사</span>
+              </button>
+            </div>
           </div>
-          <button class="copy-btn" data-copy="">복사</button>
-        </div>
-        <div class="acc-row">
-          <div class="info">
-            <div class="role">FATHER</div>
-            <div class="name-row">안영석 (부)</div>
-            <div class="bank">계좌번호 준비중</div>
-          </div>
-          <button class="copy-btn" data-copy="">복사</button>
-        </div>
-        <div class="acc-row">
-          <div class="info">
-            <div class="role">MOTHER</div>
-            <div class="name-row">정경희 (모)</div>
-            <div class="bank">계좌번호 준비중</div>
-          </div>
-          <button class="copy-btn" data-copy="">복사</button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- RSVP -->
-  <section class="reveal">
-    <div class="eyebrow">RSVP</div>
-    <h2 class="title">참석 여부 전달</h2>
-    <p class="rsvp-intro serif">
-      참석이 어려우신 분들을 위해 고민 끝에 참석 의사를 여쭙게 되었습니다.<br/>
-      식전 준비에 많은 도움이 되니, 참석 여부를 알려주시면 감사하겠습니다.
-    </p>
-    <button class="rsvp-btn" id="openRsvp">참석 의사 전달하기</button>
-    <div class="share-row">
-      <button title="카카오톡 공유" id="shareKakao">K</button>
-      <button title="링크 복사" id="shareLink">🔗</button>
-      <button title="SMS" id="shareSms">✉</button>
     </div>
   </section>
 
@@ -859,6 +880,10 @@
     <div class="thx serif">감사합니다</div>
     <div class="small latin">THANK YOU FOR YOUR LOVE <span class="heart">♥</span></div>
     <div class="small" style="margin-top:14px;">Baek &amp; Jihyun · 2026.06.20</div>
+    <button class="footer-share" id="footerShare" type="button">
+      <span class="footer-share-icon" aria-hidden="true">🔗</span>
+      <span class="footer-share-label">청첩장 링크 복사</span>
+    </button>
   </footer>
 </div>
 
@@ -871,48 +896,6 @@
     <div class="counter" id="lbCounter"></div>
   </div>
   <button class="nav next" id="lbNext" aria-label="다음">›</button>
-</div>
-
-<!-- RSVP Modal -->
-<div class="modal" id="rsvpModal">
-  <div class="sheet">
-    <h3 class="serif">참석 의사 전달</h3>
-    <form id="rsvpForm">
-      <label>구분</label>
-      <select name="side" required>
-        <option value="">선택해주세요</option>
-        <option value="groom">신랑측</option>
-        <option value="bride">신부측</option>
-      </select>
-      <label>성함</label>
-      <input type="text" name="name" required placeholder="홍길동" />
-      <div class="row">
-        <div>
-          <label>참석 여부</label>
-          <select name="attending" required>
-            <option value="">선택</option>
-            <option value="yes">참석</option>
-            <option value="no">불참</option>
-          </select>
-        </div>
-        <div>
-          <label>인원</label>
-          <input type="number" name="count" min="1" max="10" value="1" />
-        </div>
-      </div>
-      <label>식사 여부</label>
-      <select name="meal">
-        <option value="yes">예정</option>
-        <option value="no">안함</option>
-      </select>
-      <label>전달 메시지 (선택)</label>
-      <textarea name="message" rows="3" placeholder="축하의 메시지를 남겨주세요"></textarea>
-      <div class="actions">
-        <button type="button" class="cancel" id="rsvpCancel">취소</button>
-        <button type="submit" class="submit">전달하기</button>
-      </div>
-    </form>
-  </div>
 </div>
 
 <script>
@@ -1014,17 +997,37 @@
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var txt = btn.dataset.copy;
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(txt).then(function () {
-          var old = btn.textContent; btn.textContent = '복사됨';
-          setTimeout(function () { btn.textContent = old; }, 1200);
-        });
+      if (!txt) return;
+      var flash = function () {
+        var label = btn.querySelector('.copy-label');
+        var old = label ? label.textContent : null;
+        if (label) label.textContent = '복사됨';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          if (label && old !== null) label.textContent = old;
+          btn.classList.remove('copied');
+        }, 1200);
+      };
+      var fallback = function () {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = txt;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          flash();
+        } catch (e) {
+          window.prompt('계좌번호를 복사하세요', txt);
+        }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(flash).catch(fallback);
       } else {
-        var ta = document.createElement('textarea');
-        ta.value = txt; document.body.appendChild(ta); ta.select();
-        document.execCommand('copy'); document.body.removeChild(ta);
-        var old = btn.textContent; btn.textContent = '복사됨';
-        setTimeout(function () { btn.textContent = old; }, 1200);
+        fallback();
       }
     });
   });
@@ -1137,37 +1140,45 @@
     })();
   })();
 
-  // RSVP Modal
+  // Footer share: copy page URL to clipboard
   (function () {
-    var modal = document.getElementById('rsvpModal');
-    var open = document.getElementById('openRsvp');
-    var cancel = document.getElementById('rsvpCancel');
-    var form = document.getElementById('rsvpForm');
-    open.addEventListener('click', function () { modal.classList.add('open'); });
-    cancel.addEventListener('click', function () { modal.classList.remove('open'); });
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) modal.classList.remove('open');
-    });
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('참석 의사가 전달되었습니다. 감사합니다 ♥');
-      modal.classList.remove('open');
-      form.reset();
+    var btn = document.getElementById('footerShare');
+    if (!btn) return;
+    var label = btn.querySelector('.footer-share-label');
+    var defaultText = label ? label.textContent : '';
+    btn.addEventListener('click', function () {
+      var url = location.href;
+      var done = function () {
+        if (label) label.textContent = '복사되었습니다 ♥';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          if (label) label.textContent = defaultText;
+          btn.classList.remove('copied');
+        }, 1800);
+      };
+      var fail = function () {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = url;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          done();
+        } catch (e) {
+          window.prompt('링크를 복사하세요', url);
+        }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done).catch(fail);
+      } else {
+        fail();
+      }
     });
   })();
-
-  // Share
-  document.getElementById('shareLink').addEventListener('click', function () {
-    var url = location.href;
-    if (navigator.clipboard) navigator.clipboard.writeText(url);
-    alert('링크가 복사되었습니다');
-  });
-  document.getElementById('shareKakao').addEventListener('click', function () {
-    alert('카카오톡 공유는 Kakao SDK 키 설정 후 활성화됩니다');
-  });
-  document.getElementById('shareSms').addEventListener('click', function () {
-    location.href = 'sms:?body=' + encodeURIComponent('허백♥안지현 결혼합니다: ' + location.href);
-  });
 </script>
 </body>
 </html>
