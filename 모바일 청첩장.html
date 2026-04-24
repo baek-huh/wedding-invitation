@@ -87,6 +87,20 @@
     margin: 0 0 14px;
     letter-spacing: 0.1em;
   }
+  .cover h1.latin-name {
+    font-family: 'Cormorant Garamond', 'Nanum Myeongjo', serif;
+    font-weight: 400;
+    font-size: 36px;
+    letter-spacing: 0.06em;
+    margin: 0 0 2px;
+  }
+  .cover .name-kor {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
   .cover h1 .amp {
     color: var(--rose);
     font-family: 'Cormorant Garamond', serif;
@@ -150,6 +164,10 @@
     margin: 0 auto;
     max-width: 340px;
     white-space: pre-line;
+  }
+  .greeting p em {
+    opacity: 0.55;
+    font-style: italic;
   }
 
   /* ---- People ---- */
@@ -293,34 +311,36 @@
     text-align: center;
   }
 
-  /* ---- Gallery ---- */
+  /* ---- Gallery: 2-column masonry, natural aspect ratios ---- */
   .gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    max-width: 380px;
+    column-count: 2;
+    column-gap: 8px;
+    max-width: 420px;
     margin: 0 auto;
   }
   .gallery .tile {
-    aspect-ratio: 1 / 1;
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 8px;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
     border-radius: 6px;
-    background: #e8d8c3;
-    cursor: pointer;
-    position: relative;
     overflow: hidden;
+    background: #efe7d8;
+    cursor: pointer;
     transition: transform 0.25s ease;
   }
   .gallery .tile:hover { transform: scale(0.98); }
   .gallery .tile img {
-    width: 100%; height: 100%;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
     display: block;
     opacity: 0;
     transition: opacity 0.5s ease;
   }
   .gallery .tile img.loaded { opacity: 1; }
   .gallery-empty {
-    grid-column: 1 / -1;
     text-align: center; padding: 24px 0;
     color: var(--muted); font-size: 13px;
     font-family: 'Nanum Myeongjo', serif;
@@ -335,20 +355,22 @@
   }
   .lightbox.open { display: flex; }
   .lightbox .box {
-    width: 90%; max-width: 420px;
-    max-height: 80vh;
-    border-radius: 8px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
     position: relative;
+    max-width: 92vw;
+    max-height: 85vh;
+    background: transparent;
+    box-shadow: none;
     display: flex; align-items: center; justify-content: center;
-    background: #0d0906;
-    overflow: hidden;
   }
   .lightbox .box img {
-    width: 100%; height: 100%;
-    max-height: 80vh;
+    max-width: 92vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
     object-fit: contain;
     display: block;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
   .lightbox .counter {
     position: absolute; bottom: -34px; left: 0; right: 0;
@@ -592,7 +614,8 @@
   <section class="cover">
     <div class="date-latin">2026 . 06 . 20 . SAT</div>
     <div class="photo"></div>
-    <h1 class="serif">허백<span class="amp">&amp;</span>안지현</h1>
+    <h1 class="serif latin-name">Baek<span class="amp">&amp;</span>Jihyun</h1>
+    <div class="name-kor">허백 ・ 안지현</div>
     <div class="sub latin">WE ARE GETTING MARRIED</div>
     <div class="divider"></div>
     <div class="when serif">
@@ -606,8 +629,8 @@
   <section class="greeting reveal">
     <div class="eyebrow">INVITATION</div>
     <h2 class="title">소중한 분들을 초대합니다</h2>
-    <p>나는 지금껏 내가 만난
-모든 이들로 이루어져 있다.
+    <p><em>"나는 지금껏 내가 만난
+모든 이들로 이루어져 있다."</em>
 
 이제, 가장 소중한 조각을 만나
 평생을 함께 하려 합니다.
