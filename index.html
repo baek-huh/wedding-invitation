@@ -418,16 +418,26 @@
   .venue-block .name { font-size: 18px; font-weight: 700; }
   .venue-block .addr { color: var(--muted); font-size: 13px; }
   .map-buttons {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 8px; max-width: 360px; margin: 18px auto 20px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; max-width: 360px; margin: 18px auto 20px;
   }
-  .map-buttons a {
-    display: block; padding: 10px 0; border-radius: 8px;
+  .map-buttons a, .map-buttons button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 14px 0; border-radius: 10px;
     background: var(--paper); border: 1px solid var(--line);
     color: var(--ink); text-decoration: none;
-    font-size: 12px; letter-spacing: 0.1em;
+    font-size: 13px; letter-spacing: 0.04em;
+    font-family: inherit; cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
-  .map-buttons a:hover { background: var(--accent-soft); }
+  .map-buttons a:hover, .map-buttons button:hover { background: var(--accent-soft); }
+  .map-buttons .btn-primary {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+  }
+  .map-buttons .btn-primary:hover { background: #8e6649; border-color: #8e6649; }
+  .map-buttons button.copied {
+    background: var(--accent-soft); border-color: var(--accent-soft); color: var(--ink);
+  }
   .directions {
     text-align: left; max-width: 360px; margin: 0 auto;
     display: flex; flex-direction: column; gap: 12px;
@@ -709,15 +719,26 @@
   <section class="reveal">
     <div class="eyebrow">LOCATION</div>
     <h2 class="title">오시는 길</h2>
-    <div class="map-placeholder"><div class="pin"></div></div>
     <div class="venue-block">
       <div class="name serif">라브르에드니아</div>
       <div class="addr">서울특별시 송파구 백제고분로 95</div>
     </div>
+    <div class="map-placeholder"><div class="pin"></div></div>
     <div class="map-buttons">
-      <a href="https://map.naver.com/p/search/라브르에드니아" target="_blank" rel="noopener">네이버 지도</a>
-      <a href="https://map.kakao.com/?q=라브르에드니아" target="_blank" rel="noopener">카카오 맵</a>
-      <a href="https://maps.google.com/?q=서울특별시+송파구+백제고분로+95" target="_blank" rel="noopener">구글 맵</a>
+      <button type="button" id="copyAddrBtn" data-address="서울시 송파구 백제고분로 95">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="11" height="11" rx="2"/>
+          <path d="M5 15V6a2 2 0 0 1 2-2h9"/>
+        </svg>
+        <span class="label">주소 복사</span>
+      </button>
+      <a class="btn-primary" href="https://naver.me/5Ot0szic" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3z"/>
+          <path d="M9 4v13M15 7v13"/>
+        </svg>
+        <span>네이버 지도</span>
+      </a>
     </div>
     <div class="directions">
       <div class="direction-card">
@@ -732,7 +753,7 @@
         </div>
         <div class="body">
           <div class="label">지하철</div>
-          <p class="desc">지하철 8호선 석촌역 3번 출구에서 도보 5분</p>
+          <p class="desc">지하철 2·9호선 종합운동장역 9번 출구에서 도보 3분</p>
         </div>
       </div>
 
@@ -748,7 +769,7 @@
         </div>
         <div class="body">
           <div class="label">버스</div>
-          <p class="desc">간선 301, 302 · 지선 3217 · 석촌호수 정류장 하차</p>
+          <p class="desc">간선 350 · 지선 3411, 3417 · 아시아선수촌아파트 하차</p>
         </div>
       </div>
 
@@ -1174,6 +1195,46 @@
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(done).catch(fail);
+      } else {
+        fail();
+      }
+    });
+  })();
+
+  // Copy venue address
+  (function () {
+    var btn = document.getElementById('copyAddrBtn');
+    if (!btn) return;
+    var label = btn.querySelector('.label');
+    var defaultText = label ? label.textContent : '주소 복사';
+    var address = btn.getAttribute('data-address') || '';
+    btn.addEventListener('click', function () {
+      var done = function () {
+        if (label) label.textContent = '복사됨';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          if (label) label.textContent = defaultText;
+          btn.classList.remove('copied');
+        }, 1800);
+      };
+      var fail = function () {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = address;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          done();
+        } catch (e) {
+          window.prompt('주소를 복사하세요', address);
+        }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(address).then(done).catch(fail);
       } else {
         fail();
       }
