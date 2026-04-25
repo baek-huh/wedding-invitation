@@ -7,10 +7,20 @@
 <meta name="description" content="2026년 6월 20일, 저희 두 사람이 부부로서 첫 발걸음을 내딛습니다." />
 <meta property="og:title" content="허백 ♥ 안지현 결혼합니다" />
 <meta property="og:description" content="2026년 6월 20일 토요일 오후 6시 30분, 라브르에드니아" />
+<meta name="theme-color" content="#faf6f0" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 <style>
+  @font-face { font-family: 'Pretendard'; font-weight: 100; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-Thin.woff') format('woff'); }
+  @font-face { font-family: 'Pretendard'; font-weight: 200; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-ExtraLight.woff') format('woff'); }
+  @font-face { font-family: 'Pretendard'; font-weight: 300; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-Light.woff') format('woff'); }
+  @font-face { font-family: 'Pretendard'; font-weight: 400; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-Regular.woff') format('woff'); }
+  @font-face { font-family: 'Pretendard'; font-weight: 500; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-Medium.woff') format('woff'); }
+  @font-face { font-family: 'Pretendard'; font-weight: 600; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-SemiBold.woff') format('woff'); }
+  @font-face { font-family: 'Pretendard'; font-weight: 700; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-Bold.woff') format('woff'); }
+  @font-face { font-family: 'Pretendard'; font-weight: 800; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-ExtraBold.woff') format('woff'); }
+  @font-face { font-family: 'Pretendard'; font-weight: 900; font-style: normal; font-display: swap; src: url('assets/fonts/Pretendard-Black.woff') format('woff'); }
   :root {
     --bg: #faf6f0;
     --paper: #fffdf9;
@@ -26,10 +36,11 @@
 
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body { margin: 0; padding: 0; }
+  html { background: var(--bg); }
   body {
-    font-family: 'Noto Sans KR', system-ui, sans-serif;
+    font-family: 'Pretendard', system-ui, sans-serif;
     color: var(--ink);
-    background: #ece4d7;
+    background: var(--bg);
     line-height: 1.7;
     font-size: 15px;
     letter-spacing: 0.01em;
@@ -51,7 +62,7 @@
   /* ---- Cover ---- */
   .cover {
     position: relative;
-    padding: 72px 28px 48px;
+    padding: 43px 28px 48px;
     text-align: center;
     background:
       radial-gradient(circle at 50% 0%, #fff 0%, var(--bg) 60%),
@@ -190,12 +201,14 @@
   .person .name {
     font-family: 'Nanum Myeongjo', serif;
     font-size: 20px;
+    font-weight: 700;
     letter-spacing: 0.12em;
     margin-bottom: 10px;
   }
   .person .parents {
     font-size: 12.5px; color: var(--muted); line-height: 1.9;
   }
+  .person .parents .of { font-weight: 300; }
   .people .amp {
     font-family: 'Cormorant Garamond', serif; font-style: italic;
     color: var(--rose); font-size: 22px;
@@ -596,7 +609,7 @@
   footer {
     padding: 40px 20px 60px;
     text-align: center;
-    background: #efe7d8;
+    background: #ece4d7;
     font-family: 'Nanum Myeongjo', serif;
   }
   footer .thx {
@@ -658,13 +671,13 @@
       <div class="person">
         <div class="role">GROOM</div>
         <div class="name serif">허 백</div>
-        <div class="parents">허원순 · 이순분<br/>의 장남</div>
+        <div class="parents">허원순 · 이순분<br/><span class="of">의 장남</span></div>
       </div>
       <div class="amp">&amp;</div>
       <div class="person">
         <div class="role">BRIDE</div>
         <div class="name serif">안 지 현</div>
-        <div class="parents">안영석 · 정경희<br/>의 장녀</div>
+        <div class="parents">안영석 · 정경희<br/><span class="of">의 장녀</span></div>
       </div>
     </div>
     <div class="family-line">
